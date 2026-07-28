@@ -47,4 +47,4 @@
     <li><code>quit</code>, <code>exit</code> или <code>Ctrl+C</code> - для выхода из программы</li>
   </ol>
 
-<h2>Спасибо за то, что используете SPAS! 🤝</h2>
+<h2>Спасибо за то, что используете Wi-Fighter! 🤝</h2>
