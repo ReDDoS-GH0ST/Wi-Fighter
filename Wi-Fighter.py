@@ -223,6 +223,9 @@ class WiFighter:
                     table.add_row([key, value])
                 print(table)
 
+                table.clear_rows()
+                table.clear()
+
             except subprocess.CalledProcessError:
                 print(colored("[-] Network not found or no saved profile", "red"))
             except Exception as e:
@@ -232,8 +235,11 @@ class WiFighter:
 wifighter = WiFighter()
 wifighter.greeting_animation()
 while True:
+    if os_system == "Linux":
+        print(colored("[!] This program requires root privileges!", "red"))
+        exit()
     try:
-        command = input(colored("Wi-Fighter$ ", "cyan"))
+        command = input(colored("Wi-Fighter:~$ ", "cyan"))
         if command == "scan":
             wifighter.scan_networks()
             table.clear_rows()
@@ -241,12 +247,12 @@ while True:
             wifi_network = input(colored("[*] Enter the network's name: ", "yellow"))
             wifighter.show_WiFi_data(wifi_network)
         elif command in ["help", "--h"]:
-            table.clear_rows()
             table.field_names = ["Command", "Description"]
             for cmd, dsc in commands.items():
                 table.add_row([cmd, dsc])
             print(table, '\n')
             print("To use Wi-Fighter just write command and necessary arguments")
+            table.clear_rows()
         elif command == "clear":
             if os_system == "Windows":
                 subprocess.run("cls", shell=True)
@@ -263,5 +269,9 @@ while True:
                                                                         by R3DDoS_GH0$T""", "red"))
         elif command in ["quit", "exit"]:
             sys.exit(0)
+        else:
+            print(colored(
+                "[-] Unknown command. Available commands: MITM-Spoof, Router-Spoof, Target-Spoof, Recover, Wi-Fi Scan, Help, Clear, Banner Quit",
+                "red"))
     except KeyboardInterrupt:
         exit()
